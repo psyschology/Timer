@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreya's Birthday Countdown 🎉</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap');
+        
+        :root {
+            --primary-pink: #ff6b9d;
+            --secondary-pink: #ffa8cc;
+            --accent-purple: #c44569;
+            --light-pink: #ffe0e6;
+            --gold: #ffd700;
+            --chocolate: #8b4513;
+            --strawberry: #ff69b4;
+            --vanilla: #f5f5dc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Optimized Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 157, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(196, 69, 105, 0.2) 0%, transparent 50%),
+                linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            animation: backgroundPulse 6s ease-in-out infinite;
+        }
+        
+        @keyframes backgroundPulse {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(20deg); }
+        }
+        
+        /* Optimized Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        .particle.heart {
+            color: var(--primary-pink);
+            font-size: 20px;
+            animation: floatUp 8s linear infinite;
+        }
+        
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        
+        /* Container */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideDown 1s ease-out;
+        }
+        
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-pink), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            color: #fff;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        @keyframes slideDown {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Photo Section */
+        .photo-section {
+            perspective: 1000px;
+            margin: 60px auto;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .photo-cube {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            transform-style: preserve-3d;
+            animation: cubeRotate 15s infinite linear;
+        }
+        
+        @keyframes cubeRotate {
+            0% { transform: rotateY(0deg) rotateX(0deg); }
+            100% { transform: rotateY(360deg) rotateX(360deg); }
+        }
+        
+        .cube-face {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            overflow: hidden;
+            background: linear-gradient(45deg, var(--light-pink), #fff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: var(--accent-purple);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .cube-face.front { transform: rotateY(0deg) translateZ(125px); }
+        .cube-face.back { transform: rotateY(180deg) translateZ(125px); }
+        .cube-face.right { transform: rotateY(90deg) translateZ(125px); }
+        .cube-face.left { transform: rotateY(-90deg) translateZ(125px); }
+        .cube-face.top { transform: rotateX(90deg) translateZ(125px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(125px); }
+        
+        /* Cake Section */
+        .cake-section {
+            margin: 80px auto;
+            height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 800px;
+        }
+        
+        .cake-container {
+            position: relative;
+            animation: cakeFloat 6s ease-in-out infinite;
+        }
+        
+        @keyframes cakeFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .cake {
+            position: relative;
+            width: 300px;
+            height: 350px;
+        }
+        
+        .cake-plate {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 320px;
+            height: 20px;
+            background: linear-gradient(45deg, #c0c0c0, #e6e6e6);
+            border-radius: 50%;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .cake-base {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 280px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--chocolate), #a0522d);
+            border-radius: 15px;
+            animation: dropBase 1.5s ease-out 0.5s both;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .cake-middle {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 240px;
+            height: 70px;
+            background: linear-gradient(45deg, var(--strawberry), #ff1493);
+            border-radius: 12px;
+            animation: dropMiddle 1.5s ease-out 2s both;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+        }
+        
+        .cake-top {
+            position: absolute;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--vanilla), #fff8dc);
+            border-radius: 10px;
+            animation: dropTop 1.5s ease-out 3.5s both;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .frosting {
+            position: absolute;
+            bottom: 210px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 40px;
+            background: linear-gradient(45deg, #fffacd, #fff8dc);
+            border-radius: 20px;
+            animation: addFrosting 1s ease-out 5s both;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+        
+        .candles {
+            position: absolute;
+            bottom: 250px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            animation: lightCandles 1s ease-out 6s both;
+        }
+        
+        .candle {
+            position: relative;
+            width: 12px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--primary-pink), var(--accent-purple));
+            border-radius: 6px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        }
+        
+        .flame {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 18px;
+            background: radial-gradient(circle, var(--gold), #ff4500);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 1.2s infinite alternate;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+        
+        @keyframes dropBase {
+            0% { transform: translateX(-50%) translateY(-200px); opacity: 0; }
+            70% { transform: translateX(-50%) translateY(10px); }
+            100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+        
+        @keyframes dropMiddle {
+            0% { transform: translateX(-50%) translateY(-250px); opacity: 0; }
+            70% { transform: translateX(-50%) translateY(8px); }
+            100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+        
+        @keyframes dropTop {
+            0% { transform: translateX(-50%) translateY(-300px); opacity: 0; }
+            70% { transform: translateX(-50%) translateY(6px); }
+            100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+        
+        @keyframes addFrosting {
+            0% { opacity: 0; transform: translateX(-50%) scale(0); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1); }
+        }
+        
+        @keyframes lightCandles {
+            0% { opacity: 0; transform: translateX(-50%) translateY(-30px); }
+            100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        
+        @keyframes flicker {
+            0% { transform: translateX(-50%) rotate(-2deg); }
+            100% { transform: translateX(-50%) rotate(2deg); }
+        }
+        
+        /* COUNTDOWN TIMER - MAIN SECTION */
+        .countdown-section {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px 30px;
+            margin: 80px auto;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            animation: slideUp 1.5s ease-out 7s both;
+            border: 2px solid rgba(255, 107, 157, 0.3);
+        }
+        
+        .countdown-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 0 20px var(--primary-pink);
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 20px var(--primary-pink); }
+            100% { text-shadow: 0 0 30px var(--primary-pink), 0 0 40px var(--gold); }
+        }
+        
+        /* TIMER DISPLAY */
+        .timer-display {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .time-unit {
+            background: linear-gradient(135deg, var(--primary-pink), var(--accent-purple));
+            border-radius: 20px;
+            padding: 30px 15px;
+            text-align: center;
+            position: relative;
+            box-shadow: 
+                0 15px 40px rgba(255, 107, 157, 0.3),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .time-unit:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+        
+        .time-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-family: 'Orbitron', monospace;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        
+        .time-label {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        @keyframes slideUp {
+            0% { opacity: 0; transform: translateY(80px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Message Section */
+        .message-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 60px auto;
+            max-width: 800px;
+            text-align: center;
+            animation: slideUp 1.5s ease-out 8.5s both;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        
+        .message-text {
+            font-size: 1.3rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        
+        .message-text .highlight {
+            color: var(--accent-purple);
+            font-weight: 600;
+        }
+        
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            color: var(--primary-pink);
+            font-weight: 600;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-title { font-size: 2.5rem; }
+            .countdown-title { font-size: 1.8rem; }
+            .timer-display { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 15px; 
+            }
+            .time-number { font-size: 2rem; }
+            .time-unit { padding: 20px 10px; }
+            .photo-cube { width: 180px; height: 180px; }
+            .cube-face { width: 180px; height: 180px; }
+            .cake { width: 220px; height: 280px; }
+            .cake-base { width: 200px; height: 60px; }
+            .cake-middle { width: 170px; height: 50px; bottom: 60px; }
+            .cake-top { width: 140px; height: 45px; bottom: 110px; }
+        }
+        
+        /* Loading Screen */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-pink), var(--accent-purple));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOut 1.5s ease-out 1.5s both;
+        }
+        
+        .loading-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: white;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; pointer-events: none; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-overlay">
+        <div class="loading-text">Creating magic for Golu... ✨</div>
+    </div>
+    
+    <!-- Background -->
+    <div class="bg-animation"></div>
+    
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="main-title">Hey Golu! 🎉</h1>
+            <p class="subtitle">Your amazing birthday countdown is here!</p>
+        </div>
+        
+        <!-- Photo Cube -->
+        <div class="photo-section">
+            <div class="photo-cube">
+                <div class="cube-face front">
+                    📸 shreya.png<br>
+                    <small>Your photo here!</small>
+                </div>
+                <div class="cube-face back">
+                    🌟 Beautiful<br>
+                    <small>Memories</small>
+                </div>
+                <div class="cube-face right">
+                    💫 Amazing<br>
+                    <small>Moments</small>
+                </div>
+                <div class="cube-face left">
+                    ✨ Special<br>
+                    <small>Times</small>
+                </div>
+                <div class="cube-face top">
+                    🎈 Happy<br>
+                    <small>Vibes</small>
+                </div>
+                <div class="cube-face bottom">
+                    🎊 Party<br>
+                    <small>Mode</small>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cake -->
+        <div class="cake-section">
+            <div class="cake-container">
+                <div class="cake">
+                    <div class="cake-plate"></div>
+                    <div class="cake-base"></div>
+                    <div class="cake-middle"></div>
+                    <div class="cake-top"></div>
+                    <div class="frosting"></div>
+                    <div class="candles">
+                        <div class="candle"><div class="flame"></div></div>
+                        <div class="candle"><div class="flame"></div></div>
+                        <div class="candle"><div class="flame"></div></div>
+                        <div class="candle"><div class="flame"></div></div>
+                        <div class="candle"><div class="flame"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- COUNTDOWN TIMER -->
+        <div class="countdown-section">
+            <h2 class="countdown-title">⏰ TIME UNTIL YOUR SPECIAL DAY ⏰</h2>
+            <div class="timer-display" id="timer">
+                <div class="time-unit">
+                    <div class="time-number" id="days">--</div>
+                    <div class="time-label">DAYS</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-number" id="hours">--</div>
+                    <div class="time-label">HOURS</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-number" id="minutes">--</div>
+                    <div class="time-label">MINUTES</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-number" id="seconds">--</div>
+                    <div class="time-label">SECONDS</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Message -->
+        <div class="message-section">
+            <div class="message-text">
+                Hey <span class="highlight">Shreya</span>! 🌟<br><br>
+                Hope this countdown gets you excited for your special day! 
+                Created this with some serious coding skills just to see you smile. 
+                Your birthday is going to be <span class="highlight">absolutely amazing</span>! 
+                Can't wait to celebrate! 🎂✨
+            </div>
+            <div class="signature">
+                Built with code, coffee & lots of excitement! ☕️💻
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // FIXED COUNTDOWN TIMER
+        class CountdownTimer {
+            constructor() {
+                // Get current year and set target date to July 28th of current year
+                const currentYear = new Date().getFullYear();
+                const currentDate = new Date();
+                
+                // Set target date to July 28th
+                let targetDate = new Date(currentYear, 6, 28, 0, 0, 0); // Month is 0-indexed, so 6 = July
+                
+                // If July 28th has already passed this year, set it to next year
+                if (currentDate > targetDate) {
+                    targetDate = new Date(currentYear + 1, 6, 28, 0, 0, 0);
+                }
+                
+                this.targetDate = targetDate.getTime();
+                this.elements = {
+                    days: document.getElementById('days'),
+                    hours: document.getElementById('hours'),
+                    minutes: document.getElementById('minutes'),
+                    seconds: document.getElementById('seconds')
+                };
+                
+                console.log('🎯 Target Date:', new Date(this.targetDate));
+                console.log('📅 Current Date:', new Date());
+                
+                this.init();
+            }
+            
+            init() {
+                this.update();
+                this.interval = setInterval(() => this.update(), 1000);
+            }
+            
+            update() {
+                const now = new Date().getTime();
+                const distance = this.targetDate - now;
+                
+                console.log('⏰ Time remaining (ms):', distance);
+                
+                if (distance < 0) {
+                    this.showBirthdayMessage();
+                    return;
+                }
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                this.updateDisplay('days', days);
+                this.updateDisplay('hours', hours);
+                this.updateDisplay('minutes', minutes);
+                this.updateDisplay('seconds', seconds);
+            }
+            
+            updateDisplay(unit, value) {
+                const element = this.elements[unit];
+                const formattedValue = value.toString().padStart(2, '0');
+                
+                if (element.textContent !== formattedValue) {
+                    element.style.transform = 'scale(1.1)';
+                    element.style.color = '#ffd700';
+                    
+                    setTimeout(() => {
+                        element.textContent = formattedValue;
+                        element.style.transform = 'scale(1)';
+                        element.style.color = 'white';
+                    }, 150);
+                }
+            }
+            
+            showBirthdayMessage() {
+                clearInterval(this.interval);
+                const timer = document.getElementById('timer');
+                timer.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                        <div style="font-size: 3rem; color: var(--primary-pink); font-family: 'Dancing Script', cursive; margin-bottom: 20px;">
+                            🎉 HAPPY BIRTHDAY GOLU! 🎉
+                        </div>
+                        <div style="font-size: 1.5rem; color: white; font-weight: 500;">
+                            Your epic day is finally here! 🚀✨
+                        </div>
+                    </div>
+                `;
+                this.createConfetti();
+            }
+            
+            createConfetti() {
+                const colors = ['#ff6b9d', '#ffa8cc', '#c44569', '#ffd700'];
+                for(let i = 0; i < 50; i++) {
+                    setTimeout(() => {
+                        const confetti = document.createElement('div');
+                        confetti.style.position = 'fixed';
+                        confetti.style.left = Math.random() * 100 + '%';
+                        confetti.style.top = '-10px';
+                        confetti.style.width = '8px';
+                        confetti.style.height = '8px';
+                        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                        confetti.style.zIndex = '9999';
+                        confetti.style.animation = 'confettiFall 3s linear forwards';
+                        document.body.appendChild(confetti);
+                        
+                        setTimeout(() => confetti.remove(), 3000);
+                    }, i * 100);
+                }
+            }
+        }
+        
+        // Optimized Particle System
+        class ParticleSystem {
+            constructor() {
+                this.container = document.getElementById('particles');
+                this.init();
+            }
+            
+            init() {
+                this.createHearts();
+                setInterval(() => this.createHearts(), 4000);
+            }
+            
+            createHearts() {
+                const hearts = ['💕', '💖', '💗'];
+                for(let i = 0; i < 2; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div');
+                        heart.className = 'particle heart';
+                        heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                        heart.style.left = Math.random() * 100 + '%';
+                        heart.style.animationDelay = Math.random() * 2 + 's';
+                        this.container.appendChild(heart);
+                        
+                        setTimeout(() => heart.remove(), 8000);
+                    }, i * 2000);
+                }
+            }
+        }
+        
+        // Add confetti animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes confettiFall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🚀 Initializing Birthday Countdown...');
+            
+            new CountdownTimer();
+            new ParticleSystem();
+            
+            console.log('✅ Birthday Countdown Loaded Successfully!');
+        });
+        
+        // Performance optimization
+        document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+</body>
+</html>

@@ -131,41 +131,50 @@
         }
         
         .photo-cube {
-            position: relative;
-            width: 250px;
-            height: 250px;
-            transform-style: preserve-3d;
-            animation: cubeRotate 15s infinite linear;
-        }
-        
-        @keyframes cubeRotate {
-            0% { transform: rotateY(0deg) rotateX(0deg); }
-            100% { transform: rotateY(360deg) rotateX(360deg); }
-        }
-        
-        .cube-face {
-            position: absolute;
-            width: 250px;
-            height: 250px;
-            border: 2px solid var(--gold);
-            border-radius: 15px;
-            overflow: hidden;
-            background: linear-gradient(45deg, var(--light-pink), #fff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.5rem;
-            color: var(--accent-purple);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        
-        .cube-face.front { transform: rotateY(0deg) translateZ(125px); }
-        .cube-face.back { transform: rotateY(180deg) translateZ(125px); }
-        .cube-face.right { transform: rotateY(90deg) translateZ(125px); }
-        .cube-face.left { transform: rotateY(-90deg) translateZ(125px); }
-        .cube-face.top { transform: rotateX(90deg) translateZ(125px); }
-        .cube-face.bottom { transform: rotateX(-90deg) translateZ(125px); }
+    position: relative;
+    width: 250px;
+    height: 250px;
+    transform-style: preserve-3d;
+    animation: cubeRotate 15s infinite linear;
+}
+
+@keyframes cubeRotate {
+    0% { transform: rotateY(0deg) rotateX(0deg); }
+    100% { transform: rotateY(360deg) rotateX(360deg); }
+}
+
+.cube-face {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border: 2px solid var(--gold);
+    border-radius: 15px;
+    overflow: hidden; /* This is important to crop images that might exceed the face */
+    background: linear-gradient(45deg, var(--light-pink), #fff);
+    display: flex; /* Keeping these for potential text/content centering if needed */
+    align-items: center;
+    justify-content: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--accent-purple);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Add this new rule for images inside cube faces */
+.cube-face img {
+    width: 100%;  /* Makes the image take up 100% of the parent's width */
+    height: 100%; /* Makes the image take up 100% of the parent's height */
+    object-fit: cover; /* This is crucial for controlling how the image fits */
+    display: block; /* Removes any extra space below the image */
+}
+
+
+.cube-face.front { transform: rotateY(0deg) translateZ(125px); }
+.cube-face.back { transform: rotateY(180deg) translateZ(125px); }
+.cube-face.right { transform: rotateY(90deg) translateZ(125px); }
+.cube-face.left { transform: rotateY(-90deg) translateZ(125px); }
+.cube-face.top { transform: rotateX(90deg) translateZ(125px); }
+.cube-face.bottom { transform: rotateX(-90deg) translateZ(125px); }
         
         /* Cake Section */
         .cake-section {

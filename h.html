@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Shreya's Grand Celebration Countdown 🎉</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="path/to/your/favicon.png">
+    <link rel="apple-touch-icon" href="path/to/your/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#c44569">
+
+    <style>
+        /* --- CSS Custom Properties (Variables) --- */
+        :root {
+            --primary-pink: #ff6b9d;
+            --secondary-pink: #ffa8cc;
+            --accent-purple: #c44569;
+            --light-pink: #ffe0e6;
+            --gold: #ffd700;
+            --chocolate: #8b4513;
+            --strawberry: #ff69b4;
+            --vanilla: #f5f5dc;
+            --dark-background-start: #667eea; /* Deeper purple */
+            --dark-background-end: #764ba2;   /* Lighter purple */
+            --card-background: rgba(0, 0, 0, 0.85); /* Slightly darker, more opaque */
+            --border-glow-color: rgba(255, 107, 157, 0.5); /* Stronger glow */
+            --text-color-light: #fff;
+            --text-color-dark: #333;
+            --font-body: 'Poppins', sans-serif;
+            --font-script: 'Dancing Script', cursive;
+            --font-display: 'Orbitron', monospace;
+            --mobile-breakpoint: 768px; /* Standard mobile breakpoint */
+            --tablet-breakpoint: 1024px; /* Standard tablet breakpoint */
+        }
+
+        /* --- Global Resets & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* Enhance touch feedback */
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth; /* For smoother internal links if you add them */
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--dark-background-start); /* Fallback */
+            min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+            color: var(--text-color-light); /* Default text color */
+            -webkit-font-smoothing: antialiased; /* Better text rendering on iOS */
+            -moz-osx-font-smoothing: grayscale; /* Better text rendering on macOS/iOS */
+        }
+
+        /* --- Optimized Background & Dynamic Glow --- */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2; /* Even lower for better layering */
+            background:
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 157, 0.2) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(196, 69, 105, 0.2) 0%, transparent 60%),
+                linear-gradient(135deg, var(--dark-background-start) 0%, var(--dark-background-end) 100%);
+            animation: backgroundPulse 10s ease-in-out infinite alternate,
+                       backgroundShimmer 20s linear infinite; /* New shimmer effect */
+            background-size: 200% 200%; /* For shimmer */
+        }
+
+        @keyframes backgroundPulse {
+            0% { filter: hue-rotate(0deg); background-position: 0% 0%; }
+            50% { filter: hue-rotate(20deg); background-position: 100% 100%; }
+            100% { filter: hue-rotate(0deg); background-position: 0% 0%; }
+        }
+
+        @keyframes backgroundShimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* --- Particle System (Enhanced) --- */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1; /* Above background, below content */
+            overflow: hidden; /* Ensure particles don't cause scrollbars */
+        }
+
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            will-change: transform, opacity; /* Hint for browser performance */
+        }
+
+        .particle.heart {
+            color: var(--primary-pink);
+            font-size: clamp(12px, 2vw, 30px); /* Responsive font size */
+            animation: floatUp 8s linear infinite forwards, fadeHeart 8s linear infinite forwards;
+            filter: drop-shadow(0 0 5px rgba(255, 107, 157, 0.5));
+        }
+        /* Add more particle types for variety */
+        .particle.star {
+            color: var(--gold);
+            font-size: clamp(10px, 1.5vw, 25px);
+            animation: floatUp 10s linear infinite forwards, sparkle 2s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.7));
+            transform: rotate(calc(var(--random-rotation) * 1deg)); /* Unique rotation for each star */
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) translateX(calc(var(--random-x) * 1px)) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-100px) translateX(calc(var(--random-x) * 1px)) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes fadeHeart { /* Separate fade animation for more control */
+            0%, 100% { opacity: 0; }
+            10%, 90% { opacity: 1; }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.2); filter: brightness(1.5); }
+        }
+
+
+        /* --- Main Container --- */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px; /* Slightly wider for larger screens */
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 60px; /* Space between sections */
+        }
+
+        /* --- Header --- */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideDown 1s ease-out forwards;
+            padding-top: 40px; /* Push content down slightly on mobile */
+        }
+
+        .main-title {
+            font-family: var(--font-script);
+            font-size: clamp(2.5rem, 8vw, 5rem); /* Fluid font size */
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-pink), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Enhanced shadow */
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.6rem); /* Fluid font size */
+            color: var(--text-color-light);
+            font-weight: 400;
+            opacity: 0.9;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            padding: 0 10px; /* Prevent text from hitting edges on small screens */
+        }
+
+        @keyframes slideDown {
+            0% { opacity: 0; transform: translateY(-80px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Photo Section (Cube) --- */
+        .photo-section {
+            perspective: 1500px; /* Deeper perspective for 3D effect */
+            margin: 60px auto;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* For overlays/effects */
+        }
+
+        .photo-cube {
+            position: relative;
+            width: 250px; /* Base size */
+            height: 250px;
+            transform-style: preserve-3d;
+            animation: cubeRotate 15s infinite linear;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5); /* Deeper shadow for cube */
+            transition: transform 0.3s ease-out; /* Smooth transition on hover if JS is added */
+        }
+
+        /* Add a subtle hover/tap effect for the cube */
+        .photo-cube:hover {
+            transform: scale(1.05) rotateY(10deg) rotateX(-5deg); /* Slight lift and tilt */
+        }
+
+        @keyframes cubeRotate {
+            0% { transform: rotateY(0deg) rotateX(0deg); }
+            100% { transform: rotateY(360deg) rotateX(360deg); }
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border: 3px solid var(--gold); /* Thicker, more prominent border */
+            border-radius: 20px; /* More rounded */
+            overflow: hidden;
+            background: linear-gradient(45deg, var(--light-pink), #fff); /* Fallback */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-script);
+            font-size: 1.5rem;
+            color: var(--accent-purple);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 0 15px rgba(255,255,255,0.5); /* Inner shadow for depth */
+            /* Add some subtle animation on each face */
+            transition: all 0.5s ease-in-out;
+        }
+
+        .cube-face:hover {
+            transform: scale(1.02); /* Slight lift on individual faces */
+            border-color: var(--primary-pink); /* Highlight border on hover */
+        }
+
+        .cube-face img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Crops image to fit, no distortion */
+            display: block;
+            filter: brightness(0.95); /* Slightly dim images for text overlay/consistency */
+            transition: filter 0.3s ease-out;
+        }
+
+        .cube-face img:hover {
+            filter: brightness(1.1) saturate(1.1); /* Brighter and more vibrant on hover */
+        }
+
+        /* Adjustments for cube face positioning */
+        .cube-face.front { transform: rotateY(0deg) translateZ(125px); }
+        .cube-face.back { transform: rotateY(180deg) translateZ(125px); }
+        .cube-face.right { transform: rotateY(90deg) translateZ(125px); }
+        .cube-face.left { transform: rotateY(-90deg) translateZ(125px); }
+        .cube-face.top { transform: rotateX(90deg) translateZ(125px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(125px); }
+
+        /* --- Cake Section --- */
+        .cake-section {
+            margin: 80px auto;
+            height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px; /* Deeper perspective for cake */
+            position: relative;
+        }
+
+        .cake-container {
+            position: relative;
+            animation: cakeFloat 6s ease-in-out infinite alternate, cakeGlow 4s ease-in-out infinite alternate;
+            transform-origin: center bottom; /* Anchor float from bottom */
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5));
+        }
+
+        @keyframes cakeFloat {
+            0%, 100% { transform: translateY(0px) rotateY(0deg); }
+            50% { transform: translateY(-20px) rotateY(5deg); }
+        }
+        @keyframes cakeGlow { /* Subtle glow for the cake */
+            0%, 100% { filter: drop-shadow(0 15px 30px rgba(255, 105, 180, 0.4)); }
+            50% { filter: drop-shadow(0 25px 50px rgba(255, 105, 180, 0.7)); }
+        }
+
+        .cake {
+            position: relative;
+            width: 300px;
+            height: 350px;
+            transform-style: preserve-3d; /* For true 3D elements */
+        }
+
+        .cake-plate {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%) rotateX(75deg); /* More pronounced 3D effect */
+            width: 320px;
+            height: 20px;
+            background: radial-gradient(ellipse at center, #f0f0f0 0%, #a0a0a0 100%);
+            border-radius: 50%;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4), inset 0 5px 10px rgba(255,255,255,0.3);
+        }
+
+        .cake-layer {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) rotateX(10deg); /* Tilt layers for 3D effect */
+            transform-origin: center bottom;
+            background: linear-gradient(45deg, var(--chocolate), #a0522d);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .cake-base {
+            width: 280px;
+            height: 80px;
+            bottom: 0;
+            animation: dropBase 1.5s ease-out 0.5s both;
+            background: linear-gradient(45deg, var(--chocolate), #a0522d);
+        }
+
+        .cake-middle {
+            width: 240px;
+            height: 70px;
+            bottom: 80px;
+            animation: dropMiddle 1.5s ease-out 2s both;
+            background: linear-gradient(45deg, var(--strawberry), #ff1493);
+        }
+
+        .cake-top {
+            width: 200px;
+            height: 60px;
+            bottom: 150px;
+            animation: dropTop 1.5s ease-out 3.5s both;
+            background: linear-gradient(45deg, var(--vanilla), #fff8dc);
+        }
+
+        .frosting {
+            position: absolute;
+            bottom: 210px;
+            left: 50%;
+            transform: translateX(-50%) rotateX(10deg);
+            width: 180px;
+            height: 40px;
+            background: linear-gradient(45deg, #fffacd, #fff8dc);
+            border-radius: 20px;
+            animation: addFrosting 1s ease-out 5s both;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15), inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .candles {
+            position: absolute;
+            bottom: 250px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            animation: lightCandles 1s ease-out 6s both;
+        }
+
+        .candle {
+            position: relative;
+            width: 12px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--primary-pink), var(--accent-purple));
+            border-radius: 6px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+            transform-origin: bottom; /* For a subtle sway */
+            animation: candleSway 3s ease-in-out infinite alternate;
+        }
+
+        .flame {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 18px;
+            background: radial-gradient(circle, var(--gold) 30%, #ff4500 70%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 1.2s infinite alternate;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 100, 0, 0.5); /* Stronger glow */
+        }
+
+        @keyframes dropBase {
+            0% { transform: translateX(-50%) translateY(-200px) rotateX(45deg); opacity: 0; }
+            70% { transform: translateX(-50%) translateY(10px) rotateX(5deg); }
+            100% { transform: translateX(-50%) translateY(0) rotateX(10deg); opacity: 1; }
+        }
+        @keyframes dropMiddle {
+            0% { transform: translateX(-50%) translateY(-250px) rotateX(45deg); opacity: 0; }
+            70% { transform: translateX(-50%) translateY(8px) rotateX(5deg); }
+            100% { transform: translateX(-50%) translateY(0) rotateX(10deg); opacity: 1; }
+        }
+        @keyframes dropTop {
+            0% { transform: translateX(-50%) translateY(-300px) rotateX(45deg); opacity: 0; }
+            70% { transform: translateX(-50%) translateY(6px) rotateX(5deg); }
+            100% { transform: translateX(-50%) translateY(0) rotateX(10deg); opacity: 1; }
+        }
+        @keyframes addFrosting {
+            0% { opacity: 0; transform: translateX(-50%) scale(0) rotateX(90deg); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1) rotateX(10deg); }
+        }
+        @keyframes lightCandles {
+            0% { opacity: 0; transform: translateX(-50%) translateY(-30px); }
+            100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        @keyframes flicker {
+            0%, 100% { transform: translateX(-50%) rotate(-2deg) scale(1); opacity: 1; }
+            50% { transform: translateX(-50%) rotate(2deg) scale(1.05); opacity: 0.9; }
+        }
+        @keyframes candleSway {
+            0%, 100% { transform: rotateY(-3deg); }
+            50% { transform: rotateY(3deg); }
+        }
+
+        /* --- COUNTDOWN TIMER - MAIN SECTION --- */
+        .countdown-section {
+            background: var(--card-background);
+            backdrop-filter: blur(25px) saturate(180%); /* Stronger blur and saturation for modern look */
+            border-radius: 30px;
+            padding: clamp(30px, 6vw, 60px) clamp(20px, 4vw, 40px); /* Responsive padding */
+            margin: 80px auto;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.1); /* Deeper shadow */
+            animation: slideUp 1.5s ease-out 7s both, borderGlow 3s ease-in-out infinite alternate;
+            border: 2px solid var(--border-glow-color); /* Initial border color */
+            position: relative;
+            overflow: hidden; /* For inner effects */
+            transform: translateZ(0); /* Ensure smooth animation on some devices */
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { border-color: var(--primary-pink); box-shadow: 0 25px 60px rgba(255, 107, 157, 0.4); }
+            50% { border-color: var(--gold); box-shadow: 0 25px 80px rgba(255, 215, 0, 0.6); }
+        }
+
+        .countdown-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 5vw, 3rem); /* Fluid font size */
+            font-weight: 700;
+            color: var(--text-color-light);
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 0 25px var(--primary-pink), 0 0 40px var(--gold); /* Enhanced glow */
+            animation: titleGlow 2.5s ease-in-out infinite alternate; /* Slower, more subtle glow */
+            line-height: 1.3;
+        }
+
+        /* TIMER DISPLAY */
+        .timer-display {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Default to 2 columns for mobile */
+            gap: clamp(15px, 3vw, 30px); /* Responsive gap */
+            max-width: 900px; /* Increased max-width for timer */
+            margin: 0 auto;
+            perspective: 500px; /* For flip effect */
+        }
+
+        .time-unit {
+            background: linear-gradient(135deg, var(--primary-pink), var(--accent-purple));
+            border-radius: 25px; /* Slightly more rounded */
+            padding: clamp(20px, 5vw, 40px) clamp(10px, 3vw, 20px);
+            text-align: center;
+            position: relative;
+            box-shadow:
+                0 15px 40px rgba(255, 107, 157, 0.3),
+                inset 0 2px 10px rgba(255,255,255,0.3); /* Stronger inner highlight */
+            transition: transform 0.3s ease, background 0.3s ease;
+            overflow: hidden;
+            will-change: transform, box-shadow; /* Hint for performance */
+        }
+
+        .time-unit::before { /* Subtle background shimmer on each unit */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.1);
+            transform: skewX(-20deg);
+            transition: transform 0.5s ease-out;
+        }
+
+        .time-unit:hover::before {
+            transform: skewX(-20deg) translateX(200%);
+        }
+
+        .time-unit:active { /* Feedback on tap/click */
+            transform: translateY(5px) scale(0.98);
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.5), inset 0 1px 5px rgba(255,255,255,0.2);
+        }
+
+        .time-number {
+            font-size: clamp(2rem, 8vw, 4.5rem); /* Fluid font size */
+            font-weight: 800;
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.5); /* Deeper shadow */
+            font-family: var(--font-display);
+            line-height: 1;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block; /* For transform */
+            transform-style: preserve-3d;
+            transition: transform 0.2s ease-out; /* For value changes */
+        }
+        /* Animation for number flip effect (requires JS to apply class) */
+        .time-number.flip {
+            animation: flipNumber 0.5s ease-out;
+        }
+
+        @keyframes flipNumber {
+            0% { transform: rotateX(0deg); opacity: 1; }
+            50% { transform: rotateX(90deg); opacity: 0; }
+            51% { transform: rotateX(-90deg); opacity: 0; } /* Hide old, show new */
+            100% { transform: rotateX(0deg); opacity: 1; }
+        }
+
+        .time-label {
+            font-size: clamp(0.8rem, 2vw, 1.2rem); /* Fluid font size */
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+
+        @keyframes slideUp {
+            0% { opacity: 0; transform: translateY(100px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Message Section --- */
+        .message-section {
+            background: rgba(255, 255, 255, 0.98); /* Almost opaque white */
+            backdrop-filter: blur(10px); /* Lighter blur for a cleaner look */
+            border-radius: 25px;
+            padding: clamp(30px, 6vw, 50px);
+            margin: 60px auto;
+            max-width: 900px; /* Wider message section */
+            text-align: center;
+            animation: slideUp 1.5s ease-out 8.5s both;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            border: 1px solid rgba(0,0,0,0.05); /* Subtle border */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .message-section::before { /* Gentle gradient overlay */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top left, rgba(255, 107, 157, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at bottom right, rgba(196, 69, 105, 0.05) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .message-content { /* Wrapper for z-index */
+            position: relative;
+            z-index: 1;
+        }
+
+        .message-text {
+            font-size: clamp(1rem, 2.5vw, 1.3rem); /* Fluid font size */
+            color: var(--text-color-dark);
+            line-height: 1.8;
+            margin-bottom: 25px;
+            text-align: justify; /* Justify text for better readability on larger screens */
+            text-rendering: optimizeLegibility; /* Better text rendering */
+        }
+        @media (max-width: var(--mobile-breakpoint)) {
+            .message-text {
+                text-align: center; /* Center text on small screens */
+            }
+        }
+
+        .message-text .highlight {
+            color: var(--accent-purple);
+            font-weight: 600;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .signature {
+            font-family: var(--font-script);
+            font-size: clamp(1.4rem, 3vw, 1.8rem); /* Fluid font size */
+            color: var(--primary-pink);
+            font-weight: 700; /* Bolder signature */
+            margin-top: 30px;
+            filter: drop-shadow(0 2px 5px rgba(255, 107, 157, 0.3));
+        }
+
+        /* --- Responsive Design Adjustments --- */
+        @media (max-width: 1024px) { /* Tablet breakpoint */
+            .container {
+                gap: 40px;
+            }
+            .photo-cube {
+                width: 220px;
+                height: 220px;
+            }
+            .cube-face {
+                width: 220px;
+                height: 220px;
+                transform: translateZ(110px) !important; /* Adjust Z for smaller cube */
+            }
+            .cake {
+                width: 250px;
+                height: 300px;
+            }
+            .cake-base { width: 220px; height: 70px; }
+            .cake-middle { width: 190px; height: 60px; bottom: 70px; }
+            .cake-top { width: 160px; height: 50px; bottom: 130px; }
+            .frosting { bottom: 180px; width: 140px; height: 35px; }
+            .candles { bottom: 215px; gap: 15px; }
+            .candle { width: 10px; height: 45px; }
+            .flame { top: -18px; width: 14px; height: 16px; }
+        }
+
+
+        @media (max-width: var(--mobile-breakpoint)) { /* Mobile breakpoint */
+            .header {
+                padding-top: 20px;
+            }
+            .main-title {
+                font-size: clamp(2rem, 10vw, 3.5rem);
+            }
+            .subtitle {
+                font-size: clamp(0.9rem, 3vw, 1.2rem);
+            }
+            .photo-section {
+                height: 280px; /* Adjust height for smaller viewports */
+                margin: 40px auto;
+            }
+            .photo-cube {
+                width: 180px;
+                height: 180px;
+            }
+            .cube-face {
+                width: 180px;
+                height: 180px;
+                border-radius: 10px; /* Slightly less rounded */
+                transform: translateZ(90px) !important; /* Adjust Z for smaller cube */
+            }
+
+            .cake-section {
+                height: 350px;
+                margin: 60px auto;
+            }
+            .cake-container {
+                transform: scale(0.8); /* Scale down entire cake on smaller screens */
+                transform-origin: center bottom;
+            }
+            .cake {
+                width: 250px;
+                height: 300px;
+            }
+            .cake-plate { width: 270px; height: 15px; bottom: -15px;}
+            .cake-base { width: 220px; height: 60px; }
+            .cake-middle { width: 180px; height: 50px; bottom: 60px; }
+            .cake-top { width: 150px; height: 40px; bottom: 110px; }
+            .frosting { bottom: 150px; width: 130px; height: 30px; }
+            .candles { bottom: 180px; gap: 10px; }
+            .candle { width: 10px; height: 40px; }
+            .flame { top: -16px; width: 12px; height: 14px; }
+
+
+            .countdown-section {
+                padding: 30px 20px;
+                margin: 40px auto;
+                border-radius: 20px;
+            }
+            .countdown-title {
+                font-size: clamp(1.5rem, 6vw, 2.2rem);
+                margin-bottom: 30px;
+            }
+            .timer-display {
+                grid-template-columns: repeat(2, 1fr); /* Always 2 columns on mobile */
+                gap: 15px;
+            }
+            .time-unit {
+                padding: 25px 10px;
+                border-radius: 15px;
+            }
+            .time-number {
+                font-size: clamp(1.8rem, 7vw, 3rem);
+            }
+            .time-label {
+                font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+                letter-spacing: 1px;
+            }
+
+            .message-section {
+                padding: 30px 20px;
+                margin: 40px auto;
+                border-radius: 20px;
+            }
+            .message-text {
+                font-size: clamp(0.9rem, 2.8vw, 1.1rem);
+            }
+            .signature {
+                font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+            }
+        }
+
+        /* Landscape orientation for smaller phones */
+        @media (max-width: 767px) and (orientation: landscape) {
+            .container {
+                gap: 30px;
+                padding: 15px;
+            }
+            .header {
+                margin-bottom: 20px;
+                padding-top: 15px;
+            }
+            .main-title {
+                font-size: clamp(2rem, 6vw, 3rem);
+            }
+            .subtitle {
+                font-size: clamp(0.8rem, 2.5vw, 1rem);
+            }
+            .photo-section, .cake-section {
+                height: auto; /* Allow height to adjust */
+                margin: 30px auto;
+                flex-direction: column; /* Stack elements if space is tight */
+            }
+            .photo-cube, .cake-container {
+                transform: scale(0.7); /* Scale down more for very narrow landscapes */
+                transform-origin: center;
+            }
+            .countdown-section {
+                padding: 20px;
+                margin: 30px auto;
+            }
+            .timer-display {
+                grid-template-columns: repeat(4, 1fr); /* Try to fit 4 if width allows */
+                gap: 10px;
+            }
+            .time-number {
+                font-size: clamp(1.5rem, 5vw, 2.5rem);
+            }
+            .time-label {
+                font-size: clamp(0.6rem, 1.8vw, 0.8rem);
+            }
+        }
+
+
+        /* --- Loading Screen --- */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-pink), var(--accent-purple));
+            display: flex;
+            flex-direction: column; /* Stack text and spinner */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOut 1.5s ease-out 1.5s both;
+            pointer-events: all; /* Keep pointer events until faded */
+        }
+
+        .loading-text {
+            font-family: var(--font-script);
+            font-size: clamp(2rem, 8vw, 4rem); /* Responsive loading text */
+            color: white;
+            animation: pulse 1s infinite;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .loading-spinner { /* Added a custom spinner */
+            width: 60px;
+            height: 60px;
+            border: 6px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; pointer-events: all; }
+            100% { opacity: 0; pointer-events: none; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        /* --- Accessibility: Reduce Motion Preference --- */
+        @media (prefers-reduced-motion: reduce) {
+            .bg-animation,
+            .particles,
+            .particle,
+            .photo-cube,
+            .cake-container,
+            .cake-layer,
+            .frosting,
+            .candles,
+            .candle,
+            .flame,
+            .countdown-section,
+            .message-section,
+            .loading-overlay,
+            .loading-text,
+            .loading-spinner {
+                animation: none !important; /* Disable all animations */
+                transition: none !important; /* Disable all transitions */
+            }
+            .time-unit::before {
+                display: none; /* Hide shimmer */
+            }
+            .cake-plate, .cake-base, .cake-middle, .cake-top, .frosting, .candles {
+                transform: translateX(-50%) !important; /* Reset 3D transforms to flat */
+            }
+            .cube-face {
+                transform: none !important; /* Reset 3D transforms */
+            }
+            .photo-cube {
+                transform: none !important;
+            }
+            .cube-face img:hover {
+                filter: none; /* Disable image hover effects */
+            }
+            .time-unit:hover {
+                transform: none; /* Disable hover scale */
+            }
+            .time-number {
+                transform: none;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="loading-overlay">
+        <div class="loading-text">Loading Shreya's Special Day...</div>
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="bg-animation"></div>
+    <div class="particles" id="particles-container"></div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">Happy Birthday, Shreya!</h1>
+            <p class="subtitle">Counting down to a day filled with joy, laughter, and wishes!</p>
+        </header>
+
+        <section class="photo-section">
+            <div class="photo-cube">
+                <div class="cube-face front"><img src="https://via.placeholder.com/250/ff6b9d/FFFFFF?text=Shreya+1" alt="Shreya's Photo 1"></div>
+                <div class="cube-face back"><img src="https://via.placeholder.com/250/ffa8cc/FFFFFF?text=Shreya+2" alt="Shreya's Photo 2"></div>
+                <div class="cube-face right"><img src="https://via.placeholder.com/250/c44569/FFFFFF?text=Shreya+3" alt="Shreya's Photo 3"></div>
+                <div class="cube-face left"><img src="https://via.placeholder.com/250/ffd700/FFFFFF?text=Shreya+4" alt="Shreya's Photo 4"></div>
+                <div class="cube-face top"><img src="https://via.placeholder.com/250/8b4513/FFFFFF?text=Shreya+5" alt="Shreya's Photo 5"></div>
+                <div class="cube-face bottom"><img src="https://via.placeholder.com/250/ff69b4/FFFFFF?text=Shreya+6" alt="Shreya's Photo 6"></div>
+            </div>
+        </section>
+
+        <section class="cake-section">
+            <div class="cake-container">
+                <div class="cake">
+                    <div class="cake-plate"></div>
+                    <div class="cake-layer cake-base"></div>
+                    <div class="cake-layer cake-middle"></div>
+                    <div class="cake-layer cake-top"></div>
+                    <div class="frosting"></div>
+                    <div class="candles">
+                        <div class="candle"><div class="flame"></div></div>
+                        <div class="candle"><div class="flame"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="countdown-section">
+            <h2 class="countdown-title">The Big Day Arrives In...</h2>
+            <div class="timer-display" id="countdown-timer">
+                <div class="time-unit">
+                    <div class="time-number" id="days">00</div>
+                    <div class="time-label">Days</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-number" id="hours">00</div>
+                    <div class="time-label">Hours</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-number" id="minutes">00</div>
+                    <div class="time-label">Minutes</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-number" id="seconds">00</div>
+                    <div class="time-label">Seconds</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="message-section">
+            <div class="message-content">
+                <p class="message-text">Dearest Shreya,</p>
+                <p class="message-text">As your special day draws near, we wanted to create something truly magical to celebrate the wonderful person you are. This countdown is just a small token of our immense <span class="highlight">love and admiration</span> for you. Get ready for an unforgettable birthday filled with joy, surprises, and cherished moments!</p>
+                <p class="message-text">May your year ahead be as bright and beautiful as your smile. We're so excited to celebrate with you!</p>
+                <p class="signature">With all our love,</p>
+                <p class="signature">Your Well-Wishers</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // --- JavaScript for Dynamic Effects and Countdown Logic ---
+
+        // 1. Particle Generator
+        const particlesContainer = document.getElementById('particles-container');
+        const numParticles = 30; // More particles for a richer effect
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            const type = Math.random() > 0.5 ? 'heart' : 'star'; // Random heart or star
+            particle.classList.add('particle', type);
+
+            // Randomize starting position and animation delay
+            const size = Math.random() * 20 + 10; // 10px to 30px
+            const startX = Math.random() * window.innerWidth;
+            const delay = Math.random() * 8; // 0s to 8s delay
+            const duration = 8 + Math.random() * 5; // 8s to 13s duration
+            const randomRotation = Math.random() * 360; // For star rotation
+            const randomXOffset = (Math.random() - 0.5) * 200; // Slight horizontal drift
+
+            particle.style.left = `${startX}px`;
+            particle.style.fontSize = `${size}px`;
+            particle.style.animationDelay = `${delay}s`;
+            particle.style.animationDuration = `${duration}s`;
+            particle.style.setProperty('--random-x', randomXOffset);
+            particle.style.setProperty('--random-rotation', randomRotation);
+
+            // Add heart or star symbol
+            particle.innerHTML = type === 'heart' ? '❤️' : '✨';
+
+            particlesContainer.appendChild(particle);
+
+            // Remove particle after animation to prevent memory leaks
+            particle.addEventListener('animationend', () => {
+                particle.remove();
+                // Recreate particle to maintain continuous flow
+                setTimeout(createParticle, 100);
+            });
+        }
+
+        // Initialize particles
+        for (let i = 0; i < numParticles; i++) {
+            createParticle();
+        }
+
+        // 2. Countdown Logic
+        const birthdayDate = new Date('July 27, 2025 00:00:00').getTime(); // Set Shreya's actual birthday
+        const countdownElements = {
+            days: document.getElementById('days'),
+            hours: document.getElementById('hours'),
+            minutes: document.getElementById('minutes'),
+            seconds: document.getElementById('seconds')
+        };
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = birthdayDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Function to update number with a "flip" animation
+            function animateNumberChange(element, newValue) {
+                const oldValue = parseInt(element.textContent);
+                if (oldValue !== newValue) {
+                    element.classList.add('flip');
+                    element.addEventListener('animationend', () => {
+                        element.textContent = String(newValue).padStart(2, '0');
+                        element.classList.remove('flip');
+                    }, { once: true });
+                }
+            }
+
+            if (distance < 0) {
+                // If the birthday has passed, display a celebratory message
+                document.getElementById('countdown-timer').innerHTML = "<div class='time-unit' style='grid-column: 1 / -1; background: linear-gradient(135deg, var(--gold), var(--primary-pink));'><div class='time-number' style='font-size: clamp(2rem, 8vw, 4.5rem);'>🎉 Happy Birthday! 🎉</div></div>";
+                // Optionally stop particle generation or change particle type
+                particlesContainer.innerHTML = ''; // Clear existing particles
+                clearInterval(countdownInterval); // Stop countdown
+                // Generate more celebratory particles
+                for (let i = 0; i < 50; i++) {
+                    setTimeout(() => {
+                        const confetti = document.createElement('div');
+                        confetti.classList.add('particle');
+                        const colors = ['#ffd700', '#ff6b9d', '#ffa8cc', '#c44569', '#fff'];
+                        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                        confetti.style.width = confetti.style.height = `${Math.random() * 8 + 5}px`;
+                        confetti.style.left = `${Math.random() * 100}vw`;
+                        confetti.style.top = `${Math.random() * 100}vh`;
+                        confetti.style.animation = `confettiFall ${3 + Math.random() * 3}s linear infinite forwards, rotateConfetti ${2 + Math.random() * 2}s linear infinite`;
+                        confetti.style.borderRadius = `${Math.random() > 0.5 ? '50%' : '5px'}`; // Square or circle confetti
+                        confetti.style.transform = `scale(${Math.random() * 0.5 + 0.5}) rotate(${Math.random() * 360}deg)`; // Initial random scale and rotation
+                        particlesContainer.appendChild(confetti);
+                        confetti.addEventListener('animationend', () => confetti.remove());
+                    }, i * 50);
+                }
+                // Add confetti fall animation
+                const styleSheet = document.styleSheets[0];
+                styleSheet.insertRule(`
+                    @keyframes confettiFall {
+                        0% { transform: translateY(-100vh) rotate(0deg) scale(0.8); opacity: 0.8; }
+                        100% { transform: translateY(100vh) rotate(720deg) scale(1); opacity: 0.3; }
+                    }
+                `, styleSheet.cssRules.length);
+                 styleSheet.insertRule(`
+                    @keyframes rotateConfetti {
+                        0% { transform: rotateY(0deg) rotateX(0deg); }
+                        100% { transform: rotateY(360deg) rotateX(360deg); }
+                    }
+                `, styleSheet.cssRules.length);
+
+
+            } else {
+                animateNumberChange(countdownElements.days, days);
+                animateNumberChange(countdownElements.hours, hours);
+                animateNumberChange(countdownElements.minutes, minutes);
+                animateNumberChange(countdownElements.seconds, seconds);
+            }
+        }
+
+        // Run countdown initially and then every second
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
+
+        // 3. Loading Overlay Hider
+        window.addEventListener('load', () => {
+            const loadingOverlay = document.querySelector('.loading-overlay');
+            // Give a little extra time for animations to start before fading
+            setTimeout(() => {
+                loadingOverlay.style.opacity = '0';
+                loadingOverlay.addEventListener('transitionend', () => {
+                    loadingOverlay.style.display = 'none';
+                });
+            }, 1000); // Wait 1 second after page load before fading
+        });
+
+        // Optional: Implement a "reduce motion" toggle if you want a UI button for it
+        // (Beyond prefers-reduced-motion media query which respects OS setting)
+    </script>
+</body>
+</html>
